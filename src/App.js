@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Listing from './components/Listing'
+import ExchangeRate from './components/ExchangeRateCollection'
 
 class App extends Component {
   render() {
@@ -17,13 +19,14 @@ class App extends Component {
             <main>
               <div className="main-container">
                 <div className="exchange-window">
-                  <p>list of exchange rates</p>
+                  <p><ExchangeRate /></p>
                 </div>
                 <div className="collection">
                   <ul>
-                    <li>bitcoin</li>
-                    <li>etheruem</li>
-                    <li>some other coin</li>
+                    <li><Listing /></li>
+                    <li><Listing /></li>
+                    <li><Listing /></li>
+                    <li><Listing /></li>
                   </ul>
                 </div>
               </div>
