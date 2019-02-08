@@ -5,22 +5,30 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <div className="shadow">
+        <nav className="nav-container">
+          <img src="" alt="logo" />
+            <ul className="nav-li-container">
+              <li className="wallet">Wallet</li>
+              <li className="profile">Profile name</li>
+              <li className="profile-icon"><img src="" alt="image goes here" /> </li>
+            </ul>
+        </nav>
+            <main>
+              <div className="main-container">
+                <div className="exchange-window">
+                  <p>list of exchange rates</p>
+                </div>
+                <div className="collection">
+                  <ul>
+                    <li>bitcoin</li>
+                    <li>etheruem</li>
+                    <li>some other coin</li>
+                  </ul>
+                </div>
+              </div>
+            </main>
+    </div>
     );
   }
 }

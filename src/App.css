@@ -30,3 +30,57 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-container {
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgba(255, 255, 255, 0.60)
+}
+
+.nav-li-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #333; */
+}
+
+.nav-li-container li {
+  border: 1px;
+  float: right; 
+}
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+  height: 80%;
+}
+
+.exchange-window {
+  width: 30%;
+  height: 80%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: blue;
+}
+
+.collection {
+  border-style: solid;
+  border-width: 2px;
+  border-color: red;
+  width: 70%;
+  height: 80%;
+}
+
+.collection ul {
+  list-style-type: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+shadow{
+  background-color: rgba(0, 0, 0, 0.5);
+  /* opacity: 0.5; */
+}
