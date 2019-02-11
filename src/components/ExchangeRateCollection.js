@@ -1,11 +1,12 @@
 import React from 'react'
 import '../App.css';
+import ExchangeRate from './ExchangeRate'
 
 
-const ExchangeRate = () => {
+const ExchangeRateCollection = () => {
     return (
         <div className="exchange-rate">
-           <ul>
+           <ul className="exchange-rate-ul">
                <li>Bitcoin Placeholder</li>
                <li>Ethereum Placeholder</li>
                <li>Dogecoin Placeholder</li>
@@ -15,4 +16,4 @@ const ExchangeRate = () => {
     )
 }
 
-export default ExchangeRate
+export default ExchangeRateCollection

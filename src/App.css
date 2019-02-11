@@ -31,23 +31,53 @@
   }
 }
 
+main {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+body:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  content: "";
+  z-index: -1;
+  background-color: rgb(0, 0, 0, 0.1)
+}
+
 .nav-container {
   border-style: solid;
   border-width: 2px;
   background-color: rgba(255, 255, 255, 0.60)
 }
 
+.nav-logo-container {
+  height: 50px;
+  width: 230px;
+}
+
+.nav-logo {
+  height: auto;
+  width: 130%;
+  /* transform: translateX(-25%); */
+  transform: translateY(-39%);
+}
+
 .nav-li-container {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
+  margin: 0px;
   /* background-color: #333; */
 }
 
 .nav-li-container li {
   border: 1px;
   float: right; 
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .main-container{
@@ -66,6 +96,11 @@
   border-color: blue;
   margin: 10px;
   margin-right: 5px;
+  padding: 0px;
+}
+
+.exchange-window li {
+  padding: 10px;
 }
 
 .collection {
@@ -93,8 +128,9 @@
 }
 
 shadow{
-  background-color: rgba(0, 0, 0, 0.5);
-  /* opacity: 0.5; */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 /* Card */
@@ -111,6 +147,13 @@ shadow{
 }
 
 /* On mouse-over, add a deeper shadow */
+ul.list-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .card:hover {
   background-color: rgba(150, 150, 150, 0.8);
 }
@@ -126,19 +169,23 @@ shadow{
   border-radius: 50%
 }
 
+ul:after {
+  content: "";
+  display: block;
+  /* flex: auto; */
+}
+
 /* Exchange Rate */
 .exchange-rate {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   padding: 5px;
-  margin-left: 7px;
-  margin-right: 7px;
-  width: auto;
+    width: auto;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
 }
 
-.exchange-rate ul {
+.exchange-rate-ul {
     list-style-type: none;
 }

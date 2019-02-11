@@ -8,7 +8,8 @@ const Listing = () => {
             <img className="card-profile-picture" src="/images/Blank-Profile-Picture.jpg" alt="Avatar" ></img>
                 <div className="card-container">
                     <h4><b>John Doe</b></h4>
-                    <p>Architect & Engineer</p>
+                    <p>Buying: </p>
+                    <p>For: </p>
                 </div>
         </div>
     )
