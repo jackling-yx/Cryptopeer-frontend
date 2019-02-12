@@ -3,16 +3,33 @@ import React, { Component } from 'react';
 import './App.css';
 import Listing from './components/Listing'
 import ExchangeRateCollection from './components/ExchangeRateCollection'
+import ListingCollection from './components/ListingCollection';
+import Navbar from './components/Navbar'
+import LoginCollection from './components/LoginCollection'
 
 class App extends Component {
 
   state = {
-    cardPosition: [0, 4]
+    users: [],
+    currentUser: [],
+    cardPosition: [0, 4],
   }
 
-  // componentDidMount(
-      
-  // )
+  componentDidMount(){
+    this.fetchAPI('http://localhost:3000/api/v1/users')
+    }
+
+  fetchAPI = (API) => {
+    fetch(API).then(response => response.json())
+      .then(data => 
+      {const userData = this.state.users
+        this.state.users.push(data)
+       this.setState({
+          users: data
+        })
+      })
+      console.log(this.state)
+  }
 
   // nextPosition = () => {
   //   const newStart = this.state.cardPosition[0] + 4
@@ -23,38 +40,30 @@ class App extends Component {
   // }
 
   render() {
+     if (this.state.currentUser) {
     return (
       <div className="shadow">
-        <nav className="nav-container">
-          <div className="nav-logo-container">
-            <img className="nav-logo" src="./images/cryptopeer.png" alt="logo" />
-          </div>
-            <ul className="nav-li-container">
-              <li className="wallet">Wallet</li>
-              <li className="profile">Profile name</li>
-              <li className="profile-icon"><img src="" alt="image goes here" /> </li>
-            </ul>
-        </nav>
+        <Navbar currentUser={this.state.currentUser}/>
             <main>
               <div className="main-container">
                 <div className="exchange-window">
-              {/* Change to <ExchangeRateCollection /> later to iterate through array of objects once back-end is up and running*/}
                   <ExchangeRateCollection />
                 </div>
                 <div className="collection">
                   <ul className="list-container">
-                  {/* Change to <ListingCollection /> later to iterate through array of objects once back-end is up and running*/}
-                    <li><Listing /></li>
-                    <li><Listing /></li>
-                    <li><Listing /></li>
-                    <li><Listing /></li>
+                   <ListingCollection users={this.state.users} />
                   </ul>
                 </div>
               </div>
             </main>
     </div>
-    );
+    )
   }
+    else { return (
+      <LoginCollection />
+    )}
+  
+  } 
 }
 
 export default App;

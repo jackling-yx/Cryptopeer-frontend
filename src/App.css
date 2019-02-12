@@ -48,6 +48,8 @@ body:after {
   background-color: rgb(0, 0, 0, 0.1)
 }
 
+/* NavBar */
+
 .nav-container {
   border-style: solid;
   border-width: 2px;
@@ -103,6 +105,7 @@ body:after {
   padding: 10px;
 }
 
+/* Listing */
 .collection {
   display: flex;
   border-style: solid;
@@ -188,4 +191,63 @@ ul:after {
 
 .exchange-rate-ul {
     list-style-type: none;
+}
+
+/* Login Container */
+.login-container {
+  display: flex;
+  height: auto;
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+  position: absolute;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+.username-container {
+  display: flex ;
+  align: center
+}
+
+.username-input {
+  border-radius: 15px;
+}
+
+.password-input {
+  border-radius: 10px;
+}
+
+/* Signup Container */ 
+
+.signup-container {
+  display: flex;
+  height: auto;
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+  position: absolute;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.signup-container form {
+  input:focus {
+    color: none;
+  }  
+}
+
+.prompt-text {
+  font-size: 0.65em;
 }

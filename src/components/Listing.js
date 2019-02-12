@@ -2,16 +2,16 @@ import React from 'react'
 import '../App.css';
 
 
-const Listing = () => {
+const Listing = (props) => {
     return(
-        <div className="card">
+        <li className="card">
             <img className="card-profile-picture" src="/images/Blank-Profile-Picture.jpg" alt="Avatar" ></img>
                 <div className="card-container">
-                    <h4><b>John Doe</b></h4>
-                    <p>Buying: </p>
+                    <h4><b>{props.userinfo.username}</b></h4>
+                    <p>Selling: </p>
                     <p>For: </p>
                 </div>
-        </div>
+        </li>
     )
 }
 
