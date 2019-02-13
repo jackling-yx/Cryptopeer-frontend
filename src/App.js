@@ -18,7 +18,7 @@ class App extends Component {
 
   // carousel = () => {
   //   let len = this.state.users.length;
-  //   let count = 0 
+  //   let count = 0
   //   let array = []
   //   while (count + 4 <= len){
   //     array.push([count, count + 4])
@@ -52,7 +52,7 @@ class App extends Component {
   // }
 
   loginUser = (username, password) => {
-    console.log(username, password) 
+    console.log(username, password)
     fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
@@ -82,14 +82,14 @@ class App extends Component {
       .then(resp => resp.json())
       .then(data => console.log(data))
   }
-  
+
   fetchAPI = (API) => {
     fetch(API, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     }).then(response => response.json())
-      .then(data => 
+      .then(data =>
         {const userData = this.state.users
         this.state.users.push(data)
         this.setState({
@@ -115,6 +115,20 @@ class App extends Component {
     }
   }
 
+  showTradePage = () => {
+
+  }
+
+  getUserCoins = (user) => {
+    console.log(user)
+    let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
+    let id_array = coin_array.map(coin => coin.coin_id)
+    console.log(id_array)
+
+    //user_coin id currently shown - need to update to coin symbol
+    return id_array.join(", ")
+  }
+
 
   render() {
      if (this.state.currentUser) {
@@ -128,7 +142,7 @@ class App extends Component {
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}
-                   <ListingCollection users={this.state.users} cardPosition={this.state.cardPosition}/>
+                   <ListingCollection users={this.state.users} cardPosition={this.state.cardPosition} trade={this.showTradePage} coinString={this.getUserCoins}/>
                   {/* </ul> */}
                 </div>
               </div>
@@ -141,8 +155,8 @@ class App extends Component {
         <LoginCollection login={this.loginUser} signup={this.signupUser} />
        </div>
     )}
-  
-  } 
+
+  }
 }
 
 export default App;

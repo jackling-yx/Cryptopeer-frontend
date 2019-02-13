@@ -10,8 +10,8 @@ class ListingCollection extends Component {
         return (
                 <ul className="list-container">
                     {
-                    this.props.users.map(user => 
-                        <Listing key={user.id} userinfo={user}/>)
+                    this.props.users.map(user =>
+                        <Listing key={user.id} userinfo={user} trade={this.props.trade} coinString={this.props.coinString}/>)
                     }
                 </ul>
         )
