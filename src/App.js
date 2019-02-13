@@ -6,50 +6,17 @@ import ExchangeRateCollection from './components/ExchangeRateCollection'
 import ListingCollection from './components/ListingCollection';
 import Navbar from './components/Navbar'
 import LoginCollection from './components/LoginCollection'
+import { Route, Switch } from 'react-router-dom'
+import Profile from './components/Profile'
+import Trading from './components/Trading'
 
 class App extends Component {
 
   state = {
     users: [],
-    currentUser: null,
-    cardPosition: [0,4],
-    carousel: []
+    currentUser: null
   }
 
-  // carousel = () => {
-  //   let len = this.state.users.length;
-  //   let count = 0 
-  //   let array = []
-  //   while (count + 4 <= len){
-  //     array.push([count, count + 4])
-  //     count += 4
-  //   }
-  //   if (len % 4 !== 0 ){
-  //     array.push([count, len])
-  //   }
-  //   // jack to sort this out
-  //   this.setState(carousel: array)
-  // }
-
-  // changeCarousel = () => {
-  //   carousel()
-  //   let carousel = this.state.carousel
-  //   let cardPosition = this.state.cardPosition
-  //   let len = carousel.length
-
-  //   let count = carousel.map(i => i[0]).indexOf(cardPosition[0])
-
-  //   function add(count) {
-  //     if (count + 1 >= len) {
-  //       count = 0
-  //     } else {
-  //       count = count + 1
-  //     }
-  //     return count
-  //   }
-  //   add(count)
-  //   this.setState(cardPosition: carousel[count])
-  // }
 
   loginUser = (username, password) => {
     console.log(username, password) 
@@ -104,13 +71,17 @@ class App extends Component {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   }).then(resp => resp.json())
-    .then(data => this.setState({ currentUser: data }))
+    .then(data =>
+    this.setState({ currentUser: data }) )
+
+    // this.setState({ currentUser: data })
 
   componentDidMount(){
     const token = localStorage.getItem('token')
 
     if (!!token){
       this.getUserFromAPI()
+      console.log(this.state)
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
   }
@@ -121,7 +92,10 @@ class App extends Component {
     return (
       <div className="shadow">
         <Navbar currentUser={this.state.currentUser}/>
+            <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
+            <Route path="/trade" component={() => <Trade currentUser={this.state.currentUser} />} ></Route>
             <main>
+              
               <div className="main-container">
                 <div className="exchange-window">
                   <ExchangeRateCollection />
@@ -132,7 +106,13 @@ class App extends Component {
                   {/* </ul> */}
                 </div>
               </div>
+
+              {/* <Switch>
+                <Route></Route>
+                <Route></Route>
+              </Switch> */}
             </main>
+
     </div>
     )
   }
@@ -144,5 +124,42 @@ class App extends Component {
   
   } 
 }
+
+
+
+  // carousel = () => {
+  //   let len = this.state.users.length;
+  //   let count = 0 
+  //   let array = []
+  //   while (count + 4 <= len){
+  //     array.push([count, count + 4])
+  //     count += 4
+  //   }
+  //   if (len % 4 !== 0 ){
+  //     array.push([count, len])
+  //   }
+  //   // jack to sort this out
+  //   this.setState(carousel: array)
+  // }
+
+  // changeCarousel = () => {
+  //   carousel()
+  //   let carousel = this.state.carousel
+  //   let cardPosition = this.state.cardPosition
+  //   let len = carousel.length
+
+  //   let count = carousel.map(i => i[0]).indexOf(cardPosition[0])
+
+  //   function add(count) {
+  //     if (count + 1 >= len) {
+  //       count = 0
+  //     } else {
+  //       count = count + 1
+  //     }
+  //     return count
+  //   }
+  //   add(count)
+  //   this.setState(cardPosition: carousel[count])
+  // }
 
 export default App;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../App.css';
 
 const Navbar = (props) => {
@@ -9,8 +10,8 @@ const Navbar = (props) => {
             </div>
             <ul className="nav-li-container">
                 {/* <li className="wallet">Wallet</li> */}
-                <li className="profile">Profile name</li>
                 <li className="profile-icon"><img src="" alt="image goes here" /> </li>
+                <Link to="/profile"><li className="profile" >Test</li></Link>
             </ul>
         </nav>
     )
