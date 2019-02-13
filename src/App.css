@@ -1,34 +1,9 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-page {
+  height: 100vh;
+  /* width: 100%; */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 main {
@@ -105,6 +80,22 @@ body:after {
   padding: 10px;
 }
 
+/* Exchange Rate */
+.exchange-rate {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 5px;
+    width: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.exchange-rate-ul {
+    list-style-type: none;
+}
+
+
 /* Listing */
 .collection {
   display: flex;
@@ -144,16 +135,16 @@ shadow{
   padding: 5px;
   margin-left: 7px;
   margin-right: 7px;
+  margin-bottom: 10px;
   width: auto;
   background-color: rgba(150, 150, 150, 0.8);
   border-radius: 10px;
 }
 
-/* On mouse-over, add a deeper shadow */
 ul.list-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -163,7 +154,7 @@ ul.list-container {
 
 /* Add some padding inside the card container */
 .card-container {
-  padding: 2px 16px;
+  padding: auto;
 }
 
 .card-profile-picture {
@@ -175,23 +166,9 @@ ul.list-container {
 ul:after {
   content: "";
   display: block;
-  /* flex: auto; */
+  flex: 1 1 auto;
 }
 
-/* Exchange Rate */
-.exchange-rate {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  padding: 5px;
-    width: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-}
-
-.exchange-rate-ul {
-    list-style-type: none;
-}
 
 /* Login Container */
 .login-container {
@@ -203,18 +180,28 @@ ul:after {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
   padding: 15px;
   position: absolute;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
 }
 
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.username-container {
+.login-container div input {
+  margin: 0 auto;
+  display: flex;
+}
+
+/* .username-container {
   display: flex ;
   align: center
-}
+} */
 
 .username-input {
   border-radius: 15px;
@@ -240,12 +227,19 @@ ul:after {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  
+}
+
+.signup-container div input {
+  margin: 0 auto;
+  display: flex;
+  border-radius: 15px;
 }
 
 .signup-container form {
   input:focus {
     color: none;
-  }  
+  };
 }
 
 .prompt-text {

@@ -9,8 +9,10 @@ class ListingCollection extends Component {
     render() {
         return (
                 <ul className="list-container">
-                    {this.props.users.map(user => 
-                    <li> <Listing key={user.id} userinfo={user}/> </li>)}
+                    {
+                    this.props.users.map(user => 
+                        <Listing key={user.id} userinfo={user}/>)
+                    }
                 </ul>
         )
     }
