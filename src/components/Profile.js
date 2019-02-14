@@ -22,7 +22,11 @@ const Profile = (props) => {
                 </div>
                 <div><input type="submit" value="Update Profile" /></div>
                 </form>
-                
+
+            <div style={{ display: "block", alignContent: "column"}}>
+                    {props.currentUser.user_coins.map(coin => 
+                        <div>{coin.coin_id}: {coin.quantity}</div>)}
+                </div>
             <p><Link to="/">Close</Link></p>
         </div>
         

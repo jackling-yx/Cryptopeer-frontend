@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     users: [],
     currentUser: null,
-    selectedUser: null
+    selectedUser: null,
     prices: []
   }
 
@@ -47,8 +47,8 @@ class App extends Component {
       },
       body: JSON.stringify({ username: username, password: password, email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url})
     })
-      .then(resp => resp.json())
-      .then(data => console.log(data))
+      .this.getUserFromAPI()
+      .this.fetchAPI('http://localhost:3000/api/v1/users')
   }
 
   patchUserInfo = (email, firstname, lastname, profile_pic_url) => {
@@ -97,9 +97,9 @@ class App extends Component {
   getUserCoins = (user) => {
     // console.log(user)
     let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
-    let id_array = coin_array.map(coin => coin.coin_id)
+    let id_array = coin_array.map(coin => coin.symbol)
     // console.log(id_array)
-
+    
     //user_coin id currently shown - need to update to coin symbol
     return id_array.join(", ")
   }
