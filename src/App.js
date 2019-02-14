@@ -14,8 +14,8 @@ class App extends Component {
   state = {
     users: [],
     currentUser: null,
-    selectedUser: null
-    prices: []
+    selectedUser: null,
+    coins: []
   }
 
 
@@ -79,11 +79,14 @@ class App extends Component {
       console.log(this.state)
   }
 
-  fetchPrices = () => {
-    fetch("http://localhost:3000/api/v1/update_prices")
+  fetchPrices = async () => {
+    return await fetch("http://localhost:3000/api/v1/update_prices")
       .then(res => res.json())
-      .then(data => this.setState({prices: data.coins}))
-  }
+      .then(data => {
+        this.setState({coins: data})
+        console.log(this.state.coins)
+      })
+    }
 
   getUserFromAPI = () => fetch('http://localhost:3000/api/v1/profile', {
     headers: {
@@ -118,7 +121,7 @@ class App extends Component {
       console.log(this.state)
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
-    // this.fetchPrices()
+    this.fetchPrices()
   }
 
 
@@ -135,7 +138,7 @@ class App extends Component {
 
               <div className="main-container">
                 <div className="exchange-window">
-                  <ExchangeRateCollection />
+                  <ExchangeRateCollection coins={this.state.coins}/>
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}
