@@ -15,11 +15,12 @@ class App extends Component {
     users: [],
     currentUser: null,
     selectedUser: null
+    prices: []
   }
 
 
   loginUser = (username, password) => {
-    console.log(username, password) 
+    console.log(username, password)
     fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
@@ -27,7 +28,7 @@ class App extends Component {
       },
       body: JSON.stringify({username: username, password: password})
     })
-    .then( resp => resp.json() )
+    .then(resp => resp.json())
     .then(data => {
       if (data !== undefined){
         localStorage.setItem('token', data.token)
@@ -61,14 +62,14 @@ class App extends Component {
       .then(resp => resp.json())
       .then(data => console.log(data))
   }
-  
+
   fetchAPI = (API) => {
     fetch(API, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     }).then(response => response.json())
-      .then(data => 
+      .then(data =>
         {const userData = this.state.users
         this.state.users.push(data)
         this.setState({
@@ -76,6 +77,12 @@ class App extends Component {
         })
       })
       console.log(this.state)
+  }
+
+  fetchPrices = () => {
+    fetch("http://localhost:3000/api/v1/update_prices")
+      .then(res => res.json())
+      .then(data => this.setState({prices: data.coins}))
   }
 
   getUserFromAPI = () => fetch('http://localhost:3000/api/v1/profile', {
@@ -111,6 +118,7 @@ class App extends Component {
       console.log(this.state)
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
+    // this.fetchPrices()
   }
 
 
@@ -123,8 +131,8 @@ class App extends Component {
           <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser}/>}></Route>
               <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
         </Switch>
-            <main>  
-              
+            <main>
+
               <div className="main-container">
                 <div className="exchange-window">
                   <ExchangeRateCollection />
@@ -145,15 +153,15 @@ class App extends Component {
         <LoginCollection login={this.loginUser} signup={this.signupUser} />
        </div>
     )}
-  
-  } 
+
+  }
 }
 
 
 
   // carousel = () => {
   //   let len = this.state.users.length;
-  //   let count = 0 
+  //   let count = 0
   //   let array = []
   //   while (count + 4 <= len){
   //     array.push([count, count + 4])
