@@ -16,6 +16,7 @@ class App extends Component {
     currentUser: null,
     selectedUser: null,
     prices: []
+    coins: []
   }
 
 
@@ -79,11 +80,11 @@ class App extends Component {
       console.log(this.state)
   }
 
-  fetchPrices = () => {
-    fetch("http://localhost:3000/api/v1/update_prices")
+  fetchPrices = async () => {
+    return await fetch("http://localhost:3000/api/v1/update_prices")
       .then(res => res.json())
-      .then(data => this.setState({prices: data.coins}))
-  }
+      .then(data => {this.setState({coins: data})})
+    }
 
   getUserFromAPI = () => fetch('http://localhost:3000/api/v1/profile', {
     headers: {
@@ -95,13 +96,26 @@ class App extends Component {
 
 
   getUserCoins = (user) => {
-    // console.log(user)
     let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
-    let id_array = coin_array.map(coin => coin.symbol)
+//    let id_array = coin_array.map(coin => coin.symbol)
     // console.log(id_array)
     
     //user_coin id currently shown - need to update to coin symbol
-    return id_array.join(", ")
+   // return id_array.join(", ")
+    let id_array = coin_array.map(coin => coin.coin_id)
+    if (id_array.length > 0) {
+      console.log(id_array)
+      let symbol_array = []
+      const new_array = id_array.forEach(id => {
+        console.log(id)
+        let found_coin = user.coins.find(coin => coin.id === id)
+        symbol_array.push(found_coin.symbol)
+      })
+      return symbol_array.join(", ")
+    }
+    else {
+      return "Not trading"
+    }
   }
 
   handleClick = (info) => {
@@ -118,7 +132,7 @@ class App extends Component {
       console.log(this.state)
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
-    // this.fetchPrices()
+    this.fetchPrices()
   }
 
 
@@ -135,7 +149,7 @@ class App extends Component {
 
               <div className="main-container">
                 <div className="exchange-window">
-                  <ExchangeRateCollection />
+                  <ExchangeRateCollection coins={this.state.coins}/>
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}

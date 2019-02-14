@@ -3,14 +3,12 @@ import '../App.css';
 import ExchangeRate from './ExchangeRate'
 
 
-const ExchangeRateCollection = () => {
+const ExchangeRateCollection = (props) => {
     return (
         <div className="exchange-rate">
            <ul className="exchange-rate-ul">
-               <li>Bitcoin Placeholder</li>
-               <li>Ethereum Placeholder</li>
-               <li>Dogecoin Placeholder</li>
-               <li>Litecoin Placeholder</li>
+             Guide prices (USD)
+               {props.coins.map(coin => <li>{coin.name}: {coin.price.toFixed(2)}</li> )}
            </ul>
         </div>
     )
