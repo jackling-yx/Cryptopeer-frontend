@@ -6,85 +6,118 @@ class Trading extends React.Component {
 
     state = {
         user1Id: this.props.currentUser.id,
-        user2Id: this.props.selectedUser.id,
+        user2Id: this.props.selectedUser ? this.props.selectedUser.id : null,
         user1Amount: null,
         user2Amount: null,
-        user1price: null,
-        user2price: null,
-        user1CurrencySymbol: null,        
-        user2CurrencySymbol: null
+        user1price: null, //this.props.currentUser.user_coins.first.price,
+        user2price: null,  
+        user1CurrencyId: this.props.currentUser.user_coins.first,        
+        user2CurrencyId: this.props.selectedUser ? this.props.selectedUser.user_coins.first : null
     }
 
     handleTransaction = () => {
-
+       if (this.currentUserTransactionValid) {
+            this.returnUser1Amount()
+           this.props.updateCurrentUserCoins(this.state.user1Amount, this.state.user1CurrencyId)
+           this.props.updateSelectedUserCoins(this.state.user2Amount, this.state.user2CurrencyId)
+            this.props.makeTransaction()
+       }
+       else {
+           alert('You do not have enough coins! Please update your selection')
+       }
+        
     }
 
+    returnUser1Amount = () => {
+        this.setState({ user1Amount: (this.state.user2Amount * this.state.user2price / this.state.user1price)})
+    }
+
+    currentUserTransactionValid = () => {
+        return this.state.user1Amount * this.state.user1price < this.props.currentUser.user_coins.find(parseInt(this.state.user1CurrencyId)).quantity * this.state.user1price
+    }
+
+    
     handleChange = (event) => {
         event.persist()
-           
-        this.setState({ [event.target.name]: event.target.value })
-
-
+        // debugger
+        console.log(event.target.name)
+        // const id = event.target.value
+        if (event.target.name === "user1CurrencyId") {
+            this.setState({ 
+                [event.target.name]: event.target.value
+                // , 
+                // user1price: this.props.currentUser.user_coins.find(this.state.user1CurrencyId).price
+            })
+        }
+        else if (event.target.name === "user2CurrencyId") {
+            this.setState({
+                [event.target.name]: event.target.value
+                // , 
+                // user2price: this.props.selectedUser.user_coins.find(this.state.user2CurrencyId).price
+            })
+        }
+        else {
+            this.setState({[event.target.name]: event.target.value })
+        }
+        // debugger
         console.log(this.state)
     }
 
     render() {
     return (
-        <div style={{ display: "flex", alignContent: "column", justifyContent: "center" }}>
+        <div style={{ display: "flex", alignContent: "column", justifyContent: "center" }} key={Date}>
+            {this.props.selectedUser ?
+            <div>
             <div style={{ display: "block", alignContent: "column"}}>
                 <p>You have: </p>
                 {this.props.currentUser.user_coins.map(coin =>
                     <div>{coin.symbol}: {coin.quantity}</div>)}
             </div>
+             
             <div style={{ display: "block", alignContent: "column" }}>
                 <p>{this.props.selectedUser.username} has: </p>
                 {this.props.selectedUser.user_coins.map(coin =>
                     <div>{coin.symbol}: {coin.quantity}</div>)}
             </div>
-
             <form>
                 <label>
                     Use Your:
-                    <select>
+                    <select name="user1CurrencyId" onChange={this.handleChange}>
                         {this.props.currentUser.user_coins.map(coin => {
-                            return <option name={coin.symbol} value={coin.coin_id} onChange={this.handleChange} >{coin.symbol}</option>
+                            return <option name={coin.symbol} value={coin.coin_id}  >{coin.symbol}</option>
                         })}
     
                     </select>
 
                 </label>
-                <label>
-                   {this.props.selectedUser ? 
-                    <div>
-                        <p>Trading With: {this.props.selectedUser.username}</p>
-                        <select>
-                            {this.props.selectedUser.user_coins.map(coin => {
-                                return <option value={coin.coin_id}>{coin.symbol}</option>
-                            })}
-                        </select>
-                    </div>
-                        : null}
-                        
-                    
-                </label>
-                    
-                    <div>
-                        Enter number of coins you would like to buy:
-                    <input name="user2Amount" onChange={this.handleChange} value={this.state.user2Amount}/>
-                    </div>
                    
-                    {/* <div>
-                        Enter symbol of coin you would like to trade:
-                    <input name="user1CurrencySymbol" onChange={this.handleChange} value={this.state.user1CurrencySymbol}/>
+                   <div>
+                        <label>
+                            <div>
+                                <p>Trading With: {this.props.selectedUser.username}</p>
+                                <select name="user2CurrencyId" onChange={this.handleChange}>
+                                    {this.props.selectedUser.user_coins.map(coin => {
+                                        return <option value={coin.coin_id}>{coin.symbol}</option>
+                                    })}
+                                </select>
+                            </div>
+                        </label>
+                        <div>
+                            Enter number of coins you would like to buy:
+                            <input name="user2Amount" value={this.state.user2Amount} onChange={this.handleChange}/>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Trade" onSubmit={this.handleTransaction}/>
+                        </div>
                     </div>
-                    <div>
-                    <input name="user2CurrencySymbol" onChange={this.handleChange} value={this.state.user2CurrencySymbol}/>
-                    </div> */}
-                    <div><input type="submit" value="Trade" /></div>
-                
+                      
 
             </form>
             <div><Link to="/">Close</Link></div>
+              
+              </div>
+                : null}
         </div>
     )}
 }

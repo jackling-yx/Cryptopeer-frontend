@@ -31,7 +31,6 @@ class LoginCollection extends Component {
     handleSubmit = event => {
         event.preventDefault()
         event.persist()
-        console.log("Submitted!")
         if (this.state.hasAccount)
             {this.props.login(this.state.existingUser.username, this.state.existingUser.password)
             }
@@ -57,8 +56,6 @@ class LoginCollection extends Component {
             })
             
         }
-
-        console.log(this.state)
     }
 
     // Create and persist user into back end -> working!

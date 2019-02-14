@@ -15,13 +15,32 @@ class App extends Component {
     users: [],
     currentUser: null,
     selectedUser: null,
-    prices: []
+    prices: [],
     coins: []
   }
 
+  updateCurrentUserCoins = (amount, id) => {
+    // // update current user's state
+    // let coin = currentUser.user_coins.find(parseInt(id))
+    // let newamount = currentUser.user_coins.find(parseInt(id)).quantity -= amount
+    // {...currentUser}
+    // this.setState({coin.quantity -= amount})
+    // patch users transactions
+  }
+
+  updateSelectedUserCoins = () => {
+    // // update user's state in App
+    // this.setState({
+    //   selectedUser.user_coins.find(parseInt(id)).quantity -= amount
+    // })
+    // patch selectedUser
+  }
+
+  makeTransaction = () => {
+    //post transaction to db
+  }
 
   loginUser = (username, password) => {
-    console.log(username, password)
     fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
@@ -61,7 +80,6 @@ class App extends Component {
       body: JSON.stringify({ email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url })
     })
       .then(resp => resp.json())
-      .then(data => console.log(data))
   }
 
   fetchAPI = (API) => {
@@ -77,7 +95,6 @@ class App extends Component {
           users: data
         })
       })
-      console.log(this.state)
   }
 
   fetchPrices = async () => {
@@ -97,21 +114,9 @@ class App extends Component {
 
   getUserCoins = (user) => {
     let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
-//    let id_array = coin_array.map(coin => coin.symbol)
-    // console.log(id_array)
-    
-    //user_coin id currently shown - need to update to coin symbol
-   // return id_array.join(", ")
-    let id_array = coin_array.map(coin => coin.coin_id)
+   let id_array = coin_array.map(coin => coin.symbol)
     if (id_array.length > 0) {
-      console.log(id_array)
-      let symbol_array = []
-      const new_array = id_array.forEach(id => {
-        console.log(id)
-        let found_coin = user.coins.find(coin => coin.id === id)
-        symbol_array.push(found_coin.symbol)
-      })
-      return symbol_array.join(", ")
+      return id_array.join(", ")
     }
     else {
       return "Not trading"
@@ -129,7 +134,6 @@ class App extends Component {
 
     if (!!token){
       this.getUserFromAPI()
-      console.log(this.state)
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
     this.fetchPrices()
@@ -142,7 +146,7 @@ class App extends Component {
       <div className="shadow">
         <Navbar currentUser={this.state.currentUser}/>
         <Switch>
-          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser}/>}></Route>
+          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} updateCurrentUserCoins={this.updateCurrentUserCoins} updateSelectedUserCoins={this.updateSelectedUserCoins} makeTransaction={this.makeTransaction} key={new Date()}/>}></Route>
               <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
         </Switch>
             <main>

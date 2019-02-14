@@ -8,7 +8,7 @@ const ExchangeRateCollection = (props) => {
         <div className="exchange-rate">
            <ul className="exchange-rate-ul">
              Guide prices (USD)
-               {props.coins.map(coin => <li>{coin.name}: {coin.price.toFixed(2)}</li> )}
+               {props.coins.map(coin => <li key={coin.id}>{coin.name}: {coin.price.toFixed(2)}</li> )}
            </ul>
         </div>
     )
