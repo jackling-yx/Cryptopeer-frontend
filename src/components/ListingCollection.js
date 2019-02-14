@@ -14,7 +14,7 @@ class ListingCollection extends Component {
             <ul className="list-container">
                 {
                     this.props.state.users.map(user =>
-                        <Listing key={user.id} userinfo={user} currentUser={this.props.state.currentUser} state={this.props.state} coinString={this.props.coinString}/>)
+                        <Listing key={user.id} userinfo={user} currentUser={this.props.state.currentUser} state={this.props.state} coinString={this.props.coinString} handleClick={this.props.handleClick}/>)
                 }
             </ul>
         )      

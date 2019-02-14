@@ -13,7 +13,8 @@ class App extends Component {
 
   state = {
     users: [],
-    currentUser: null
+    currentUser: null,
+    selectedUser: null
   }
 
 
@@ -85,20 +86,21 @@ class App extends Component {
     .then(data =>
     this.setState({ currentUser: data }) )
 
-    // this.setState({ currentUser: data })
-
-  selectUserToTrade = () => {
-
-  }
 
   getUserCoins = (user) => {
-    console.log(user)
+    // console.log(user)
     let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
     let id_array = coin_array.map(coin => coin.coin_id)
-    console.log(id_array)
+    // console.log(id_array)
 
     //user_coin id currently shown - need to update to coin symbol
     return id_array.join(", ")
+  }
+
+  handleClick = (info) => {
+    this.setState({selectedUser: info})
+    // give to trading
+
   }
 
   componentDidMount(){
@@ -118,7 +120,7 @@ class App extends Component {
       <div className="shadow">
         <Navbar currentUser={this.state.currentUser}/>
         <Switch>
-              <Route path="/trades/new" component={() => <Trading />}></Route>
+          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser}/>}></Route>
               <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
         </Switch>
             <main>  
@@ -129,7 +131,7 @@ class App extends Component {
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}
-              <ListingCollection state={this.state} cardPosition={this.state.cardPosition} coinString={this.getUserCoins}/>
+              <ListingCollection state={this.state} cardPosition={this.state.cardPosition} coinString={this.getUserCoins} handleClick={this.handleClick}/>
                   {/* </ul> */}
                 </div>
               </div>

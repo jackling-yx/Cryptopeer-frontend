@@ -10,8 +10,8 @@ const Navbar = (props) => {
             </div>
             <ul className="nav-li-container">
                 {/* <li className="wallet">Wallet</li> */}
-                <li className="profile-icon"><img src="" alt="image goes here" /> </li>
-                <Link to="/profile"><li className="profile" >Test</li></Link>
+                <li className="profile-icon"><img src={props.currentUser.profile_pic_url} alt="image goes here" /> </li>
+                <Link to="/profile"><li className="profile" >Go to Profile</li></Link>
             </ul>
         </nav>
     )
