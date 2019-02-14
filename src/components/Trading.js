@@ -1,9 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Profile = (props) => {
+const Trading = (props) => {
     return (
-        <div>Hello I'm Profile</div>
+        <div>
+            <p>Hello I'm Trading</p>
+            <p><Link to="/">Close</Link></p>
+        </div>
     )
 }
 
-export default Profile
+export default Trading

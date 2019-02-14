@@ -6,7 +6,7 @@ const Navbar = (props) => {
     return (
         <nav className="nav-container">
             <div className="nav-logo-container">
-                <img className="nav-logo" src="./images/cryptopeer.png" alt="logo" />
+                <img className="nav-logo" src="./images/cryptopeer.png" alt="logo"/>
             </div>
             <ul className="nav-li-container">
                 {/* <li className="wallet">Wallet</li> */}

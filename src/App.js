@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { ReactComponent as Logo } from './images/cryptopeer.png';
 import './App.css';
 import Listing from './components/Listing'
 import ExchangeRateCollection from './components/ExchangeRateCollection'
@@ -49,6 +48,18 @@ class App extends Component {
       .then(resp => resp.json())
       .then(data => console.log(data))
   }
+
+  patchUserInfo = (email, firstname, lastname, profile_pic_url) => {
+    fetch('http://localhost:3000/api/v1/', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url })
+    })
+      .then(resp => resp.json())
+      .then(data => console.log(data))
+  }
   
   fetchAPI = (API) => {
     fetch(API, {
@@ -76,6 +87,20 @@ class App extends Component {
 
     // this.setState({ currentUser: data })
 
+  selectUserToTrade = () => {
+
+  }
+
+  getUserCoins = (user) => {
+    console.log(user)
+    let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
+    let id_array = coin_array.map(coin => coin.coin_id)
+    console.log(id_array)
+
+    //user_coin id currently shown - need to update to coin symbol
+    return id_array.join(", ")
+  }
+
   componentDidMount(){
     const token = localStorage.getItem('token')
 
@@ -92,9 +117,11 @@ class App extends Component {
     return (
       <div className="shadow">
         <Navbar currentUser={this.state.currentUser}/>
-            <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
-            <Route path="/trade" component={() => <Trade currentUser={this.state.currentUser} />} ></Route>
-            <main>
+        <Switch>
+              <Route path="/trades/new" component={() => <Trading />}></Route>
+              <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
+        </Switch>
+            <main>  
               
               <div className="main-container">
                 <div className="exchange-window">
@@ -102,15 +129,10 @@ class App extends Component {
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}
-                   <ListingCollection users={this.state.users} cardPosition={this.state.cardPosition}/>
+              <ListingCollection state={this.state} cardPosition={this.state.cardPosition} coinString={this.getUserCoins}/>
                   {/* </ul> */}
                 </div>
               </div>
-
-              {/* <Switch>
-                <Route></Route>
-                <Route></Route>
-              </Switch> */}
             </main>
 
     </div>
