@@ -2,10 +2,7 @@ import React from 'react'
 import '../App.css';
 import { Route, Link } from 'react-router-dom'
 
-
 class Listing extends React.Component {
-
-    
 
     render() {
         return(

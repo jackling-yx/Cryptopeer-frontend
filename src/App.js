@@ -60,6 +60,10 @@ class App extends Component {
     })
   }
 
+  // logoutUser = () => {
+  //   localStorage.removeItem('token')
+  // }
+
   signupUser = (username, password, email, firstname, lastname, profile_pic_url) => {
     fetch('http://localhost:3000/api/v1/signup', {
       method: 'POST',
@@ -126,13 +130,10 @@ class App extends Component {
 
   handleClick = (info) => {
     this.setState({selectedUser: info})
-    // give to trading
-
   }
 
   componentDidMount(){
     const token = localStorage.getItem('token')
-
     if (!!token){
       this.getUserFromAPI()
         this.fetchAPI('http://localhost:3000/api/v1/users')
@@ -140,18 +141,16 @@ class App extends Component {
     this.fetchPrices()
   }
 
-
   render() {
      if (this.state.currentUser) {
     return (
       <div className="shadow">
-        <Navbar currentUser={this.state.currentUser}/>
+        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser}/>
         <Switch>
           <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} updateUserCoins={this.updateUserCoins} key={new Date()}/>}></Route>
               <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
         </Switch>
             <main>
-
               <div className="main-container">
                 <div className="exchange-window">
                   <ExchangeRateCollection coins={this.state.coins}/>
@@ -163,7 +162,6 @@ class App extends Component {
                 </div>
               </div>
             </main>
-
     </div>
     )
   }
@@ -175,42 +173,5 @@ class App extends Component {
 
   }
 }
-
-
-
-  // carousel = () => {
-  //   let len = this.state.users.length;
-  //   let count = 0
-  //   let array = []
-  //   while (count + 4 <= len){
-  //     array.push([count, count + 4])
-  //     count += 4
-  //   }
-  //   if (len % 4 !== 0 ){
-  //     array.push([count, len])
-  //   }
-  //   // jack to sort this out
-  //   this.setState(carousel: array)
-  // }
-
-  // changeCarousel = () => {
-  //   carousel()
-  //   let carousel = this.state.carousel
-  //   let cardPosition = this.state.cardPosition
-  //   let len = carousel.length
-
-  //   let count = carousel.map(i => i[0]).indexOf(cardPosition[0])
-
-  //   function add(count) {
-  //     if (count + 1 >= len) {
-  //       count = 0
-  //     } else {
-  //       count = count + 1
-  //     }
-  //     return count
-  //   }
-  //   add(count)
-  //   this.setState(cardPosition: carousel[count])
-  // }
 
 export default App;

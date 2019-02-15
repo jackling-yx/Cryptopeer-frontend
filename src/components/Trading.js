@@ -20,11 +20,9 @@ class Trading extends React.Component {
         let user2CurrId = this.props.selectedUser.user_coins.find((coin) => {
             return coin.coin_id == parseInt(this.state.user2CurrencyId)
         })
-
         let user1CurrId = this.props.currentUser.user_coins.find((coin) => {
             return coin.coin_id == parseInt(this.state.user1CurrencyId)
         })
-        //console.log(this.state)
         let amount = this.state.user2Amount * user2CurrId.price / user1CurrId.price
         this.setState({ user2Price: user2CurrId.price, user1Price: user1CurrId.price, user1Amount: amount }, () => this.verify())  
     }
@@ -46,61 +44,40 @@ class Trading extends React.Component {
         return test1 && test2 && test3
     }
 
-    
     handleChange = (event) => {
         const user1CurrencyPrice = [...this.props.currentUser.user_coins]
         event.persist()
-        if (event.target.name === "user1CurrencyId") {
-            let newtest = user1CurrencyPrice.find(coin => coin.id == event.target.name)
-            this.setState({ 
-                [event.target.name]: event.target.value,
-                user1Price: newtest
-            })
-        }
-        else if (event.target.name === "user2CurrencyId") {
-            this.setState({
-                [event.target.name]: event.target.value
-            })
-        }
-        else {
-            this.setState({[event.target.name]: event.target.value })
-        }
+        this.setState({[event.target.name]: event.target.value })
     }
 
     render() {
-        console.log('this.props.currentUser.user_coins:', this.props.currentUser&& this.props.currentUser.user_coins)
-        console.log('this.props.selectedUser.user_coins:', this.props.selectedUser && this.props.selectedUser.user_coins)
     return (
         <div className="trade-container" style={{ display: "flex", alignContent: "column", justifyContent: "center" }} key={Date}>
             {this.props.selectedUser ?
-            <div>
-            <div style={{ display: "block", alignContent: "column"}}>
+            <div className="trade-container-info">
+            <div className="trade-container-text" style={{ display: "block", alignContent: "column"}}>
                 <p>You have: </p>
                 {this.props.currentUser.user_coins.map(coin =>
                     <div>{coin.symbol}: {coin.quantity.toFixed(2)} / {Math.round(coin.quantity * coin.price * 100) / 100} USD</div>)}
             </div>
-             
-            <div style={{ display: "block", alignContent: "column" }}>
+                    <div className="trade-container-text" style={{ display: "block", alignContent: "column" }}>
                 <p>{this.props.selectedUser.username} has: </p>
                 {this.props.selectedUser.user_coins.map(coin =>
                     <div>{coin.symbol}: {coin.quantity.toFixed(2)} / {Math.round(coin.quantity * coin.price * 100) / 100} USD</div>)}
             </div>
-            <form>
+            <form className="trade-form">
                 <label>
                     Use Your:
                     <select name="user1CurrencyId" onChange={this.handleChange}>
                         {this.props.currentUser.user_coins.map((coin, index) => {
                             return <option name={coin.symbol} value={coin.coin_id}  >{coin.symbol}</option>
                         })}
-    
                     </select>
-
                 </label>
-                   
-                   <div>
+                   <div c>
                         <label>
-                            <div>
-                                <p>Trading With: {this.props.selectedUser.username}</p>
+                            <div className="trade-form-receiver-text">
+                                    <p>Trading With: <span>{this.props.selectedUser.username}</span></p>
                                 <select name="user2CurrencyId" onChange={this.handleChange}>
                                     {this.props.selectedUser.user_coins.map((coin, index) => {
                                         return <option value={coin.coin_id}>{coin.symbol}</option>
@@ -108,20 +85,16 @@ class Trading extends React.Component {
                                 </select>
                             </div>
                         </label>
-                        <div>
+                        <div className={'coins_amount'}>
                             Enter number of coins you would like to buy:
                             <input name="user2Amount" value={this.state.user2Amount} onChange={this.handleChange}/>
                         </div>
-
-                        <div>
-                            <input type="button" value="Trade" onClick={this.handleTransaction}/>
+                        <div className={'popup_btn_wrapper'}>
+                            <button className="trade-button" type="button" value="Trade" onClick={this.handleTransaction}>Trade</button>
                         </div>
                     </div>
-                      
-
             </form>
-            <div><Link to="/">Close</Link></div>
-              
+            <div className="trade-close"><Link to="/">Close</Link></div>
               </div>
                 : null}
         </div>
