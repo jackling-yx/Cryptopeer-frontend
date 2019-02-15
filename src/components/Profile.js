@@ -4,7 +4,7 @@ import { Route, Switch, Link } from 'react-router-dom'
 
 const Profile = (props) => {
     return (
-        <div style={{display: "flex", alignContent: "column", justifyContent: "center"}}>
+        <div className="profile-container" style={{display: "flex", alignContent: "column", justifyContent: "center"}}>
             <p>Hello {props.currentUser.username}</p>
             <br></br>
                 <form>
@@ -20,12 +20,13 @@ const Profile = (props) => {
                 <div className="imageUrl-container">
                     <input type="text" className="imageurl-input" placeholder="Image Link" name="imgUrl" value={props.currentUser.imageUrl} onChange={props.handleChange} />
                 </div>
-                <div><input type="submit" value="Update Profile" /></div>
+                <div><input type="button" value="Update Profile" /></div>
                 </form>
 
             <div style={{ display: "block", alignContent: "column"}}>
+                    You Have:
                     {props.currentUser.user_coins.map(coin => 
-                        <div>{coin.coin_id}: {coin.quantity}</div>)}
+                        <div>{coin.symbol}: {coin.quantity.toFixed(2)} / {Math.round(coin.quantity * coin.price * 100)/100} USD </div>)}
                 </div>
             <p><Link to="/">Close</Link></p>
         </div>

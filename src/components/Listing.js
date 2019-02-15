@@ -14,7 +14,11 @@ class Listing extends React.Component {
                     <div className="card-container">
                         <h4><b>{this.props.userinfo.username}</b></h4>
                             <p>Selling: {this.props.coinString(this.props.userinfo)}</p>
-                        <Link to="/trades/new" onClick={() => this.props.handleClick(this.props.userinfo)}>Trade</Link> 
+                        {this.props.coinString(this.props.userinfo) != "None" ? 
+                        <Link to="/trades/new" className="link" onClick={() => this.props.handleClick(this.props.userinfo)}>Trade</Link> 
+                        : null
+                        }
+
                     </div>
             </li>
         )

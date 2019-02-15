@@ -13,8 +13,9 @@ class ListingCollection extends Component {
         return (
             <ul className="list-container">
                 {
-                    this.props.state.users.map(user =>
-                        <Listing key={user.id} userinfo={user} currentUser={this.props.state.currentUser} state={this.props.state} coinString={this.props.coinString} handleClick={this.props.handleClick}/>)
+                    this.props.state.users.map(user => user.id !== this.props.state.currentUser.id ? 
+                        <Listing key={user.id} userinfo={user} currentUser={this.props.state.currentUser} state={this.props.state} coinString={this.props.coinString} handleClick={this.props.handleClick}/>
+                        : null)
                 }
             </ul>
         )      

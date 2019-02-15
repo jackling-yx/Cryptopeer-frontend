@@ -19,25 +19,26 @@ class App extends Component {
     coins: []
   }
 
-  updateCurrentUserCoins = (amount, id) => {
-    // // update current user's state
-    // let coin = currentUser.user_coins.find(parseInt(id))
-    // let newamount = currentUser.user_coins.find(parseInt(id)).quantity -= amount
-    // {...currentUser}
-    // this.setState({coin.quantity -= amount})
-    // patch users transactions
-  }
+  updateUserCoins = (trading_state) => {
 
-  updateSelectedUserCoins = () => {
-    // // update user's state in App
-    // this.setState({
-    //   selectedUser.user_coins.find(parseInt(id)).quantity -= amount
-    // })
-    // patch selectedUser
-  }
-
-  makeTransaction = () => {
-    //post transaction to db
+    fetch("http://localhost:3000/api/v1/transactions", {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        trading_state
+      })
+    }).then(res => res.json()).then(data => {
+      const updatedUser = data.find(user => user.id === this.state.currentUser.id)
+      const updatedSelectedUser = data.find(user => user.id === this.state.selectedUser.id)
+      this.setState({
+            users: data,
+            currentUser: { ...updatedUser},
+            selectedUser: { ...updatedSelectedUser }
+    })}
+    )
   }
 
   loginUser = (username, password) => {
@@ -119,7 +120,7 @@ class App extends Component {
       return id_array.join(", ")
     }
     else {
-      return "Not trading"
+      return "None"
     }
   }
 
@@ -146,7 +147,7 @@ class App extends Component {
       <div className="shadow">
         <Navbar currentUser={this.state.currentUser}/>
         <Switch>
-          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} updateCurrentUserCoins={this.updateCurrentUserCoins} updateSelectedUserCoins={this.updateSelectedUserCoins} makeTransaction={this.makeTransaction} key={new Date()}/>}></Route>
+          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} updateUserCoins={this.updateUserCoins} key={new Date()}/>}></Route>
               <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
         </Switch>
             <main>
