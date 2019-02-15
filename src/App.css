@@ -16,7 +16,7 @@ body:after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: block;
   content: "";
   z-index: -1;
@@ -26,8 +26,8 @@ body:after {
 /* NavBar */
 
 .nav-container {
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
   background-color: rgba(255, 255, 255, 0.60)
 }
 
@@ -68,16 +68,16 @@ body:after {
 .exchange-window {
   width: 30%;
   height: 80%;
-  border-style: solid;
-  border-width: 2px;
-  border-color: blue;
+  /* border-style: solid; */
   margin: 10px;
   margin-right: 5px;
   padding: 0px;
 }
 
+
+
 .exchange-window li {
-  padding: 10px;
+  padding: 10px 0;
 }
 
 /* Exchange Rate */
@@ -99,9 +99,7 @@ body:after {
 /* Listing */
 .collection {
   display: flex;
-  border-style: solid;
-  border-width: 2px;
-  border-color: red;
+  /* border-style: solid; */
   width: 70%;
   height: 80%;
   margin: 10px;
@@ -136,7 +134,7 @@ shadow{
   margin-left: 7px;
   margin-right: 7px;
   margin-bottom: 10px;
-  width: auto;
+  width: 170px;
   background-color: rgba(150, 150, 150, 0.8);
   border-radius: 10px;
 }
@@ -244,4 +242,132 @@ ul:after {
 
 .prompt-text {
   font-size: 0.65em;
+}
+
+.trade-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0;
+  height: 100%;
+}
+
+.trade-container-info {
+  padding: 3em;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.trade-container-text p {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 0.6em 0;
+}
+
+.trade-container-text > div {
+  margin-bottom: 0.5em;
+}
+
+.trade-container-spacing {
+  margin-top: 1em;
+  display: block;
+}
+
+.popup_btn_wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2em 0 0;
+}
+
+.coins_amount  {
+  font-weight: bold;
+}
+
+.coins_amount input {
+  margin-left: 15px;
+  border: 1px solid #ddd;
+  width: 50px;
+  border-radius: 4px;
+}
+
+.trade-button {
+  padding: 1em 0;
+  width: 130px;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  background-color: purple;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.trade-close a {
+  margin-top: 1em;
+  display: block;
+  text-decoration: none;
+}
+
+.profile-close {
+  margin-top: 1em;
+  display: block;
+  text-decoration: none;
+}
+
+.trade-form {
+  margin-top: 2em;
+  border: 1px solid #eee;
+  padding: 1em;
+  border-radius: 4px; 
+}
+
+.trade-form label {
+  font-weight: bold;
+}
+
+.trade-form select {
+  margin-left: 15px;
+  width: 100px;
+}
+
+.trade-form-receiver-text {
+  display: flex;
+  align-items: center;
+}
+
+.trade-container-text p {
+  font-weight: bold;
+}
+
+.trade-form-receiver-text p {
+  font-weight: bold;
+}
+
+.trade-container-text p span {
+  color: #b721b7;
+}
+
+.profile-container {
+  display: flex; 
+  justify-content: center;
+  align-content: column;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 10px;
+  /* padding: 5px; */
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.link {
+  font-weight: bold;
+  text-decoration: none;
 }

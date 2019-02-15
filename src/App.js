@@ -1,58 +1,47 @@
 import React, { Component } from 'react';
-// import { ReactComponent as Logo } from './images/cryptopeer.png';
 import './App.css';
 import Listing from './components/Listing'
 import ExchangeRateCollection from './components/ExchangeRateCollection'
 import ListingCollection from './components/ListingCollection';
 import Navbar from './components/Navbar'
 import LoginCollection from './components/LoginCollection'
+import { Route, Switch } from 'react-router-dom'
+import Profile from './components/Profile'
+import Trading from './components/Trading'
 
 class App extends Component {
 
   state = {
     users: [],
     currentUser: null,
-    cardPosition: [0,4],
-    carousel: []
+    selectedUser: null,
+    prices: [],
+    coins: []
   }
 
-  // carousel = () => {
-  //   let len = this.state.users.length;
-  //   let count = 0
-  //   let array = []
-  //   while (count + 4 <= len){
-  //     array.push([count, count + 4])
-  //     count += 4
-  //   }
-  //   if (len % 4 !== 0 ){
-  //     array.push([count, len])
-  //   }
-  //   // jack to sort this out
-  //   this.setState(carousel: array)
-  // }
+  updateUserCoins = (trading_state) => {
 
-  // changeCarousel = () => {
-  //   carousel()
-  //   let carousel = this.state.carousel
-  //   let cardPosition = this.state.cardPosition
-  //   let len = carousel.length
-
-  //   let count = carousel.map(i => i[0]).indexOf(cardPosition[0])
-
-  //   function add(count) {
-  //     if (count + 1 >= len) {
-  //       count = 0
-  //     } else {
-  //       count = count + 1
-  //     }
-  //     return count
-  //   }
-  //   add(count)
-  //   this.setState(cardPosition: carousel[count])
-  // }
+    fetch("http://localhost:3000/api/v1/transactions", {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        trading_state
+      })
+    }).then(res => res.json()).then(data => {
+      const updatedUser = data.find(user => user.id === this.state.currentUser.id)
+      const updatedSelectedUser = data.find(user => user.id === this.state.selectedUser.id)
+      this.setState({
+            users: data,
+            currentUser: { ...updatedUser},
+            selectedUser: { ...updatedSelectedUser }
+    })}
+    )
+  }
 
   loginUser = (username, password) => {
-    console.log(username, password)
     fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
@@ -60,7 +49,7 @@ class App extends Component {
       },
       body: JSON.stringify({username: username, password: password})
     })
-    .then( resp => resp.json() )
+    .then(resp => resp.json())
     .then(data => {
       if (data !== undefined){
         localStorage.setItem('token', data.token)
@@ -71,6 +60,10 @@ class App extends Component {
     })
   }
 
+  // logoutUser = () => {
+  //   localStorage.removeItem('token')
+  // }
+
   signupUser = (username, password, email, firstname, lastname, profile_pic_url) => {
     fetch('http://localhost:3000/api/v1/signup', {
       method: 'POST',
@@ -79,8 +72,19 @@ class App extends Component {
       },
       body: JSON.stringify({ username: username, password: password, email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url})
     })
+      .this.getUserFromAPI()
+      .this.fetchAPI('http://localhost:3000/api/v1/users')
+  }
+
+  patchUserInfo = (email, firstname, lastname, profile_pic_url) => {
+    fetch('http://localhost:3000/api/v1/', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url })
+    })
       .then(resp => resp.json())
-      .then(data => console.log(data))
   }
 
   fetchAPI = (API) => {
@@ -96,53 +100,64 @@ class App extends Component {
           users: data
         })
       })
-      console.log(this.state)
   }
+
+  fetchPrices = async () => {
+    return await fetch("http://localhost:3000/api/v1/update_prices")
+      .then(res => res.json())
+      .then(data => {this.setState({coins: data})})
+    }
 
   getUserFromAPI = () => fetch('http://localhost:3000/api/v1/profile', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   }).then(resp => resp.json())
-    .then(data => this.setState({ currentUser: data }))
+    .then(data =>
+    this.setState({ currentUser: data }) )
+
+
+  getUserCoins = (user) => {
+    let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
+   let id_array = coin_array.map(coin => coin.symbol)
+    if (id_array.length > 0) {
+      return id_array.join(", ")
+    }
+    else {
+      return "None"
+    }
+  }
+
+  handleClick = (info) => {
+    this.setState({selectedUser: info})
+  }
 
   componentDidMount(){
     const token = localStorage.getItem('token')
-
     if (!!token){
       this.getUserFromAPI()
         this.fetchAPI('http://localhost:3000/api/v1/users')
     }
+    this.fetchPrices()
   }
-
-  showTradePage = () => {
-
-  }
-
-  getUserCoins = (user) => {
-    console.log(user)
-    let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
-    let id_array = coin_array.map(coin => coin.coin_id)
-    console.log(id_array)
-
-    //user_coin id currently shown - need to update to coin symbol
-    return id_array.join(", ")
-  }
-
 
   render() {
      if (this.state.currentUser) {
     return (
       <div className="shadow">
-        <Navbar currentUser={this.state.currentUser}/>
+        <Navbar currentUser={this.state.currentUser} logoutUser={this.logoutUser}/>
+        <Switch>
+          <Route path="/trades/new" component={() => <Trading currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} updateUserCoins={this.updateUserCoins} key={new Date()}/>}></Route>
+              <Route path="/profile" component={() => <Profile currentUser={this.state.currentUser}/>} ></Route>
+        </Switch>
             <main>
               <div className="main-container">
                 <div className="exchange-window">
-                  <ExchangeRateCollection />
+                  <ExchangeRateCollection coins={this.state.coins}/>
                 </div>
                 <div className="collection">
                   {/* <ul className="list-container"> */}
-                   <ListingCollection users={this.state.users} cardPosition={this.state.cardPosition} trade={this.showTradePage} coinString={this.getUserCoins}/>
+              <ListingCollection state={this.state} cardPosition={this.state.cardPosition} coinString={this.getUserCoins} handleClick={this.handleClick}/>
                   {/* </ul> */}
                 </div>
               </div>
