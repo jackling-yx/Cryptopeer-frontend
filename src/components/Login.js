@@ -1,11 +1,10 @@
 import React from 'react'
-import Logo from './Logo'
 
 const Login = (props) => {
     return (
         <div className="login-container">
           <div className="login-logo-container">
-              <img className="login-logo" src="./images/cryptopeer.png"></img>
+              <img className="login-logo" src="./images/cryptopeer.png" alt="logo"></img>
           </div>
           <p></p>
           <form onSubmit={props.login}>
@@ -13,7 +12,7 @@ const Login = (props) => {
                   <input type="text" className="username-input" placeholder="Username" name="username" value={props.logininfo.username} onChange={props.handleChange} />
               </div>
               <div className="password-container">
-                  <input type="password" className="password-input" placeholder="Password" name="password"value={props.logininfo.password} onChange={props.handleChange} />
+                  <input type="password" className="password-input" placeholder="Password" name="password" value={props.logininfo.password} onChange={props.handleChange} />
               </div>
               <div>
                 <p></p>

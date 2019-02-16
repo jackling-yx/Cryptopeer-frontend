@@ -62,7 +62,7 @@ class LoginCollection extends Component {
     }
     else {
       return(
-          <Signup handleChange={this.handleChange} signupinfo={this.state.newUser} toggleLogin={this.toggleLogin} />
+          <Signup handleChange={this.handleChange} signupinfo={this.state.newUser} toggleLogin={this.toggleLogin} signup={this.handleSubmit} />
       )
     }
   }

@@ -16,16 +16,16 @@ export default class Adapter extends Component {
     .then(data => {return data})
   }
 
-  static signupUser = (username, password, email, firstname, lastname, profile_pic_url) => {
-    fetch(API + '/signup', {
+  static signupUser = async (username, password, email, firstname, lastname, profile_pic_url) => {
+    return await fetch(API + '/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username: username, password: password, email: email, firstname: firstname, lastname: lastname, profile_pic_url: profile_pic_url})
     })
-      .this.getUserFromAPI()
-      .this.fetchAPI()
+    .then(resp => resp.json())
+    .then(data => {return data})
   }
 
   static patchUserInfo = (email, firstname, lastname, profile_pic_url) => {

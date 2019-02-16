@@ -32,22 +32,29 @@ class App extends Component {
 
   loginUser = async (username, password) => {
     const data = await Adapter.loginUser(username, password)
-      if (data !== undefined){
+      if (data !== undefined) {
         localStorage.setItem('token', data.token)
         this.getUserFromAPI()
         this.fetchAPI()
+      }
+      else if (data === undefined) {
+        return
       }
   }
 
   logoutUser = () => {
     localStorage.removeItem('token')
     this.setState({
-      currentUser: null
+      currentUser: null,
+      selectedUser: null
     })
   }
 
-  signupUser = (username, password, email, firstname, lastname, profile_pic_url) => {
-    Adapter.signupUser(username, password, email, firstname, lastname, profile_pic_url)
+  signupUser = async (username, password, email, firstname, lastname, profile_pic_url) => {
+    const data = await Adapter.signupUser(username, password, email, firstname, lastname, profile_pic_url)
+    console.log(data)
+    this.getUserFromAPI()
+    this.fetchAPI()
   }
 
   patchUserInfo = (email, firstname, lastname, profile_pic_url) => {
@@ -74,10 +81,10 @@ class App extends Component {
       currentUser: data
     })
   }
-  
+
   getUserCoins = (user) => {
     let coin_array = user.user_coins.filter(user_coin => user_coin.selling === true)
-   let id_array = coin_array.map(coin => coin.symbol)
+    let id_array = coin_array.map(coin => coin.symbol)
     if (id_array.length > 0) {
       return id_array.join(", ")
     }

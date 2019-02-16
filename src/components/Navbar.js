@@ -10,8 +10,8 @@ const Navbar = (props) => {
             </div>
             <ul className="nav-li-container">
                 <Link to="/"><li className="link" onClick={props.logoutUser}>Log Out</li></Link>
-                <Link to="/profile"><li className="link" >Profile</li></Link>
-                <Link to="/"><li className="link" >Home</li></Link>
+                <Link to="/profile"><li className="link">Profile</li></Link>
+                <Link to="/"><li className="link">Home</li></Link>
             </ul>
         </nav>
     )
