@@ -29,7 +29,7 @@ const Signup = (props) => {
                 <div><p></p><input type="submit" value="Sign Up" /></div>
                 <div>
                     <p></p><p className="prompt-text" > Have an Account? Log In!</p>
-                    <input type="submit" value="Log in" onClick={props.toggleLogin} />
+                    <input type="submit" value="Log In" onClick={props.toggleLogin} />
                 </div>
             </form>
         </div>

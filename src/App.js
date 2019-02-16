@@ -71,7 +71,9 @@ class App extends Component {
   fetchPrices = async() => {
     const data = await Adapter.fetchPrices()
     this.setState({
-      coins: data
+      coins: data.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+})
     })
   }
 
@@ -127,8 +129,8 @@ class App extends Component {
           </main>
           <div className="footer">
             <p>Guide prices from Coinmarketcap API (sandbox). Price information for each coin is the mean of available data.</p>
-            <p>Disclaimer: price information is provided as a guide only; any information shown on the Cryptopeer website should not be construed as advice.
-            The information is not, and should not be read as, a recommendation to buy or sell any cryptocurrency.</p>
+            <p>Disclaimer: price information is provided as a guide only; any information shown on the Cryptopeer website should not be construed as advice.</p>
+            <p>The information is not, and should not be read as, a recommendation to buy or sell any cryptocurrency.</p>
             <p>You are solely responsible for your own investment research, decisions and results.</p>
           </div>
         </div>

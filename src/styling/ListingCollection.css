@@ -15,7 +15,7 @@ ul.list-container {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  padding-bottom: 150px;
+  padding-bottom: 170px;
 }
 
 .card:hover {

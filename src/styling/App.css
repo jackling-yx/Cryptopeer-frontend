@@ -60,30 +60,29 @@ main {
 .exchange-rate {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  padding: 5px;
+  padding: 15px;
   width: auto;
   background-color: rgba(50, 40, 90, 0.8);
   border-radius: 10px;
   color: #fff;
+  overflow: auto;
 }
 
-.exchange-rate-ul {
-    list-style-type: none;
-    overflow: auto;
-}
-
-.exchange-rate-ul h3 {
+.exchange-rate h3 {
   color: rgb(227, 224, 236);
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
 }
-
 
 .exchange-rate-item span {
   display: inline-block;
-  vertical-align: middle;
 }
 
 .exchange-rate-item img {
   margin-right: 20px;
+  margin-left: 5px;
+  margin-bottom: 5px;
   vertical-align: middle;
 }
 
@@ -134,8 +133,8 @@ ul.list-container {
 
 .login-container {
   display: flex;
-  height: 35%;
-  width: 50%;
+  min-height: 35%;
+  min-width: 50%;
   background-color: rgba(253, 243, 243, 0.8);
   border-radius: 15px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
@@ -151,6 +150,7 @@ ul.list-container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 15px;
 }
 
 .login-container div input {
@@ -198,8 +198,8 @@ ul.list-container {
 
 .signup-container {
   display: flex;
-  height: 35%;
-  width: 50%;
+  min-height: 35%;
+  min-width: 50%;
   background-color: rgba(253, 243, 243, 0.8);
   border-radius: 15px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
@@ -220,6 +220,7 @@ ul.list-container {
   input:focus {
     color: none;
   };
+  padding-bottom: 15px;
 }
 
 .prompt-text {
@@ -361,6 +362,7 @@ ul.list-container {
 .link {
   font-weight: bold;
   text-decoration: none;
+  padding-right: 5px;
 }
 
 .footer {
