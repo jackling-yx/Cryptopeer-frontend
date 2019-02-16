@@ -15,7 +15,7 @@
 ul.list-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 
@@ -23,7 +23,6 @@ ul.list-container {
   background-color: rgba(150, 150, 150, 0.8);
 }
 
-/* Add some padding inside the card container */
 .card-container {
   padding: 2px 16px;
 }

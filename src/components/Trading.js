@@ -20,7 +20,7 @@ class Trading extends React.Component {
     }
 
     verify = () => {
-      // If valid, send a request to the database
+      // If valid, update the database
       if (this.currentUserTransactionValid()) {
           this.props.updateUserCoins(this.state)
       }
@@ -30,22 +30,22 @@ class Trading extends React.Component {
     }
 
     currentUserTransactionValid = () => {
-        let test1 = this.state.user1Amount < this.props.currentUser.user_coins.find((coin) => coin.coin_id == parseInt(this.state.user1CurrencyId)).quantity
-        let test2 = (this.props.currentUser.user_coins.find((coin) => coin.coin_id == parseInt(this.state.user1CurrencyId)).quantity - this.state.user1Amount) >= 0
-        let test3 = (this.props.selectedUser.user_coins.find((coin) => coin.coin_id == parseInt(this.state.user2CurrencyId)).quantity - this.state.user2Amount) >= 0
+        let test1 = this.state.user1Amount < this.props.currentUser.user_coins.find((coin) => coin.coin_id === parseInt(this.state.user1CurrencyId)).quantity
+        let test2 = (this.props.currentUser.user_coins.find((coin) => coin.coin_id === parseInt(this.state.user1CurrencyId)).quantity - this.state.user1Amount) >= 0
+        let test3 = (this.props.selectedUser.user_coins.find((coin) => coin.coin_id === parseInt(this.state.user2CurrencyId)).quantity - this.state.user2Amount) >= 0
 
         return test1 && test2 && test3
     }
 
     handleChange = (event) => {
-        const user1CurrencyPrice = [...this.props.currentUser.user_coins]
+        //const user1CurrencyPrice = [...this.props.currentUser.user_coins]
         event.persist()
         if (event.target.name === 'user2Amount'){
           let user2CurrId = this.props.selectedUser.user_coins.find((coin) => {
-              return coin.coin_id == parseInt(this.state.user2CurrencyId)
+              return coin.coin_id === parseInt(this.state.user2CurrencyId)
           })
           let user1CurrId = this.props.currentUser.user_coins.find((coin) => {
-              return coin.coin_id == parseInt(this.state.user1CurrencyId)
+              return coin.coin_id === parseInt(this.state.user1CurrencyId)
           })
           let amount = event.target.value * user2CurrId.price / user1CurrId.price
           this.setState({
@@ -123,7 +123,7 @@ class Trading extends React.Component {
                   </div>
                   {this.state.user2Amount !== null && this.state.user2Amount !== "" && parseFloat(this.state.user2Amount) !== 0?
                     <div className={'coins_cost'}>
-                      <p>This will cost you {this.state.user1Amount.toFixed(2)} coins</p>
+                      <p>This will cost you {this.state.user1Amount.toFixed(2)} coins.</p>
                       {this.currentUserTransactionValid() ? <div><p>Click below to place trade!</p>  <div className={'popup_btn_wrapper'}>
                             <button className="trade-button" type="button" value="Trade" onClick={this.handleTransaction}>Trade</button>
                         </div></div> : <div><p>You do not have enough coins to complete this trade.</p><p>Please revise your selection.</p></div> }

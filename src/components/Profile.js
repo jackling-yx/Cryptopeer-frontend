@@ -1,16 +1,16 @@
 import React from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Profile = (props) => {
     return (
         <div className="trade-container" style={{display: "flex", alignContent: "column", justifyContent: "center"}}>
-        <div className="trade-container-info">
+          <div className="trade-container-info">
             <div><h2>Hello, <span>{props.currentUser.username}!</span></h2>
             </div>
             <div style={{ display: "block", alignContent: "column"}}>
                     <h3>You Have:</h3>
                     {props.currentUser.user_coins.map(coin =>
-                        <p>{coin.symbol}: {coin.quantity.toFixed(2)}  (approx. {(coin.quantity * coin.price).toFixed(2) } USD) </p>)}
+                        <p key={coin.id}>{coin.symbol}: {coin.quantity.toFixed(2)}  (approx. {(coin.quantity * coin.price).toFixed(2) } USD) </p>)}
                 </div>
             <div style={{ display: "block", alignContent: "column" }}>
                     <h3>Your transaction history</h3>
@@ -18,7 +18,7 @@ const Profile = (props) => {
                         <p>Transaction ID {transaction.id}: Sold {transaction.user_one_amount.toFixed(2)} {transaction.user_one_currency_symbol} at approx. {transaction.user_one_price.toFixed(2)} USD each; Received {transaction.user_two_amount.toFixed(2)} {transaction.user_two_currency_symbol} at approx. {transaction.user_two_price.toFixed(2)} USD each </p>) }
             </div>
             <div><Link to="/" style={{textDecoration: 'none'}}>Close</Link></div>
-        </div>
+          </div>
         </div>
     )
 }
@@ -26,8 +26,8 @@ const Profile = (props) => {
 export default Profile
 
 // Form to update user profile and wallet started but not implemented - see below.
-// Current users and user_coins come from the seed file.
-{/* <br></br>
+// Currently the users and user_coins come from the seed file.
+/* <br></br>
     <form>
     <div className="email-container">
         <input type="text" className="email-input" placeholder="email" name="email" value={props.currentUser.email} onChange={props.handleChange} />
@@ -57,4 +57,4 @@ export default Profile
     </div>
 
     <div><input type="button" value="Update Wallet" /></div>
-</form> */}
+</form> */

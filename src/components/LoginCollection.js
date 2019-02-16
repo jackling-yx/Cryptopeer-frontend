@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import Login from './Login'
 import Signup from './Signup'
-import '../App.css'
-import Logo from './Logo'
+import '../styling/App.css'
 
 class LoginCollection extends Component {
 
     state = {
         hasAccount: true,
-        existingUser: { 
+        existingUser: {
             username: null,
             password: null
         },
@@ -54,7 +53,7 @@ class LoginCollection extends Component {
             this.setState({
                newUser: newState
             })
-            
+
         }
     }
 
@@ -82,16 +81,16 @@ class LoginCollection extends Component {
     // }
 
     render() {
-        // eslint-disable-next-line no-lone-blocks
-        
-        { if (this.state.hasAccount) {
+      if (this.state.hasAccount) {
         return(
             <Login handleChange={this.handleChange} logininfo={this.state} toggleLogin={this.toggleLogin} login={this.handleSubmit}/>
-        )}
-        else { return(
+        )
+      }
+      else {
+        return(
             <Signup handleChange={this.handleChange} signupinfo={this.state.newUser} toggleLogin={this.toggleLogin} />
-        )}
-        }
+        )
+      }
     }
 }
 
