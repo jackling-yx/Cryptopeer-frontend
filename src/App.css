@@ -1,6 +1,5 @@
 .login-page {
   height: 100vh;
-  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,10 +23,7 @@ body:after {
 }
 
 /* NavBar */
-
 .nav-container {
-  /* border-style: solid;
-  border-width: 2px; */
   background-color: rgba(255, 255, 255, 0.60)
 }
 
@@ -39,20 +35,18 @@ body:after {
 .nav-logo {
   height: auto;
   width: 130%;
-  /* transform: translateX(-25%); */
-  transform: translateY(-39%);
+  transform: translateY(-38%);
 }
 
 .nav-li-container {
   list-style-type: none;
   overflow: hidden;
   margin: 0px;
-  /* background-color: #333; */
 }
 
 .nav-li-container li {
   border: 1px;
-  float: right; 
+  float: right;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -64,17 +58,13 @@ body:after {
 }
 
 /* Exchange */
-
 .exchange-window {
   width: 30%;
   height: 80%;
-  /* border-style: solid; */
   margin: 10px;
   margin-right: 5px;
   padding: 0px;
 }
-
-
 
 .exchange-window li {
   padding: 10px 0;
@@ -86,13 +76,18 @@ body:after {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   padding: 5px;
-    width: auto;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: auto;
+  background-color: rgba(50, 40, 90, 0.8);
   border-radius: 10px;
+  color: #fff;
 }
 
 .exchange-rate-ul {
     list-style-type: none;
+}
+
+.exchange-rate-ul h3 {
+
 }
 
 
@@ -130,20 +125,22 @@ shadow{
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  padding: 5px;
-  margin-left: 7px;
-  margin-right: 7px;
+  display:flex;
+	flex-direction:column;
+  padding: 1rem;
+  width: 15rem;
+  height: 16.7rem;
   margin-bottom: 10px;
   width: 170px;
-  background-color: rgba(150, 150, 150, 0.8);
+  background-color: rgba(253, 243, 243, 0.8);
   border-radius: 10px;
 }
 
 ul.list-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  width: stretch;
+  height: auto;
+  display: none;
+
 }
 
 .card:hover {
@@ -153,6 +150,11 @@ ul.list-container {
 /* Add some padding inside the card container */
 .card-container {
   padding: auto;
+}
+
+.card-container p {
+  padding: auto;
+  font-size: 0.8em;
 }
 
 .card-profile-picture {
@@ -166,7 +168,6 @@ ul:after {
   display: block;
   flex: 1 1 auto;
 }
-
 
 /* Login Container */
 .login-container {
@@ -209,8 +210,7 @@ ul:after {
   border-radius: 10px;
 }
 
-/* Signup Container */ 
-
+/* Signup Container */
 .signup-container {
   display: flex;
   height: auto;
@@ -225,7 +225,6 @@ ul:after {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  
 }
 
 .signup-container div input {
@@ -265,6 +264,10 @@ ul:after {
   border-radius: 15px;
 }
 
+.trade-container-info span {
+  color: rgba(142, 120, 228, 100);
+}
+
 .trade-container-text p {
   font-weight: bold;
   font-size: 1.3em;
@@ -283,11 +286,17 @@ ul:after {
 .popup_btn_wrapper {
   display: flex;
   justify-content: center;
-  padding: 2em 0 0;
+  padding: 0.25em 0 0;
 }
 
 .coins_amount  {
   font-weight: bold;
+}
+
+.coins_cost  {
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.8em;
 }
 
 .coins_amount input {
@@ -326,7 +335,7 @@ ul:after {
   margin-top: 2em;
   border: 1px solid #eee;
   padding: 1em;
-  border-radius: 4px; 
+  border-radius: 4px;
 }
 
 .trade-form label {
@@ -356,12 +365,11 @@ ul:after {
 }
 
 .profile-container {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-content: column;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   margin: 10px;
-  /* padding: 5px; */
   width: 100%;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
