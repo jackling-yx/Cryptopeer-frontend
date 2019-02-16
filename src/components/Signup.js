@@ -3,7 +3,10 @@ import React from 'react'
 const Signup = (props) => {
     return (
         <div className="signup-container">
-        
+          <div className="login-logo-container">
+              <img className="login-logo" src="./images/cryptopeer.png"></img>
+          </div>
+          <p></p>
             <form>
                 <div className="username-container">
                     <input type="text" className="username-input" placeholder="Username" name="username" value={props.signupinfo.username} onChange={props.handleChange} />
@@ -23,9 +26,9 @@ const Signup = (props) => {
                 <div className="imageUrl-container">
                     <input type="text" className="imageurl-input" placeholder="Image Link" name="imgUrl" value={props.signupinfo.imageUrl} onChange={props.handleChange} />
                 </div>
-                <div><input type="submit" value="Sign Up" /></div>
+                <div><p></p><input type="submit" value="Sign Up" /></div>
                 <div>
-                    <p className="prompt-text" > Have an Account? Log in!</p>
+                    <p></p><p className="prompt-text" > Have an Account? Log In!</p>
                     <input type="submit" value="Log in" onClick={props.toggleLogin} />
                 </div>
             </form>
