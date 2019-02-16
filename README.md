@@ -1,4 +1,4 @@
-<a href="https://github.com/atkinsonholly/crypto-market"><img src="" title="ModuleFourProject" alt="Module Four Project"></a>
+<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://github.com/atkinsonholly/crypto-market/blob/master/client/images/Home.png" title="ModuleFourProject" alt="Module Four Project"></a>
 
 # Flatiron School - Module Four Project
 
@@ -36,5 +36,8 @@ To run:
 * **Holly Atkinson** - https://github.com/atkinsonholly
 * **Jack Ling** - https://github.com/lingy94
 
+<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://github.com/atkinsonholly/crypto-market/blob/master/client/images/Profile.png" title="ModuleFourProject" alt="Module Four Project"></a>
+<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://github.com/atkinsonholly/crypto-market/blob/master/client/images/Trade_false.png" title="ModuleFourProject" alt="Module Four Project"></a>
+<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://github.com/atkinsonholly/crypto-market/blob/master/client/images/Trade_true.png" title="ModuleFourProject" alt="Module Four Project"></a>
 ----------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
