@@ -37,7 +37,7 @@ To run:
 * **Jack Ling** - https://github.com/lingy94
 
 <a href="https://github.com/atkinsonholly/crypto-market"><img src="https://raw.githubusercontent.com/atkinsonholly/crypto-market/master/public/images/Profile.png" title="ModuleFourProject" alt="Module Four Project"></a>
-<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://raw.githubusercontent.com/atkinsonholly/crypto-market/master/public/images/Trade_false.png.png" title="ModuleFourProject" alt="Module Four Project"></a>
+<a href="https://github.com/atkinsonholly/crypto-market"><img src="https://raw.githubusercontent.com/atkinsonholly/crypto-market/master/public/images/Trade_false.png" title="ModuleFourProject" alt="Module Four Project"></a>
 <a href="https://github.com/atkinsonholly/crypto-market"><img src="https://raw.githubusercontent.com/atkinsonholly/crypto-market/master/public/images/Trade_true.png" title="ModuleFourProject" alt="Module Four Project"></a>
 ----------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
