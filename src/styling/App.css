@@ -109,20 +109,6 @@ main {
   float:left;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  display:flex;
-	flex-direction:column;
-  padding: 1rem;
-  width: 15rem;
-  height: 16.7rem;
-  margin-bottom: 10px;
-  width: 170px;
-  background-color: rgba(253, 243, 243, 0.8);
-  border-radius: 10px;
-}
-
 ul.list-container {
   height: auto;
 }
@@ -357,4 +343,5 @@ ul.list-container {
   color: #636060;
   text-align: center;
   font-size: 0.75em;
+  height: auto;
 }
