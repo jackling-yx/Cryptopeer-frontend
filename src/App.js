@@ -39,15 +39,18 @@ class App extends Component {
       }
   }
 
-  // logoutUser = () => {
-  //   localStorage.removeItem('token')
-  // }
+  logoutUser = () => {
+    localStorage.removeItem('token')
+    this.setState({
+      currentUser: null
+    })
+  }
 
   signupUser = (username, password, email, firstname, lastname, profile_pic_url) => {
     Adapter.signupUser(username, password, email, firstname, lastname, profile_pic_url)
   }
 
-  patchUserInfo =(email, firstname, lastname, profile_pic_url) => {
+  patchUserInfo = (email, firstname, lastname, profile_pic_url) => {
     Adapter.patchUserInfo(email, firstname, lastname, profile_pic_url)
   }
 
