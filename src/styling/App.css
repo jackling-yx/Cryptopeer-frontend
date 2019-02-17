@@ -1,0 +1,377 @@
+.login-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.nav-container {
+  background-color: rgba(255, 255, 255, 0.60);
+}
+
+.nav-logo-container {
+  height: 50px;
+  width: 230px;
+}
+
+.nav-logo {
+  height: auto;
+  width: 130%;
+  transform: translateY(-38%);
+}
+
+.nav-li-container {
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0px;
+}
+
+.nav-li-container li {
+  border: 1px;
+  float: right;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom:3px;
+}
+
+.main-container{
+  display: flex;
+  height: 100%;
+  border: none;
+}
+
+.exchange-window {
+  width: 30%;
+  height: 80%;
+  margin: 10px;
+  margin-right: 5px;
+  padding: 0px;
+}
+
+.exchange-window li {
+  padding: 10px 0;
+}
+
+.exchange-rate {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 15px;
+  width: auto;
+  background-color: rgba(50, 40, 90, 0.8);
+  border-radius: 10px;
+  color: #fff;
+  overflow: auto;
+}
+
+.exchange-rate h3 {
+  color: rgb(227, 224, 236);
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exchange-rate-item span {
+  display: inline-block;
+}
+
+.exchange-rate-item img {
+  margin-right: 20px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  vertical-align: middle;
+}
+
+.collection {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  margin: 10px;
+  margin-left: 5px;
+  flex-wrap: wrap;
+}
+
+.collection ul {
+  flex-direction: row;
+  list-style-type: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.collection li {
+  float:left;
+}
+
+ul.list-container {
+  height: auto;
+}
+
+.card:hover {
+  background-color: rgba(150, 150, 150, 0.8);
+}
+
+.card-container {
+  padding: auto;
+}
+
+.card-container p {
+  padding: auto;
+  font-size: 0.8em;
+}
+
+.card-profile-picture {
+  width: 100%;
+  height: auto;
+  border-radius: 50%
+}
+
+.login-container {
+  display: flex;
+  min-height: 35%;
+  min-width: 50%;
+  background-color: rgba(253, 243, 243, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.login-container div input {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-logo-container {
+  height: 100px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.login-logo {
+  height: auto;
+  width: 130%;
+}
+
+.login-button {
+  padding: 1em 0;
+  width: 130px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  background-color: rgba(50, 40, 90, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.username-input {
+  border-radius: 15px;
+}
+
+.password-input {
+  border-radius: 10px;
+}
+
+.signup-container {
+  display: flex;
+  min-height: 35%;
+  min-width: 50%;
+  background-color: rgba(253, 243, 243, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 50px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.signup-container div input {
+  margin: 0 auto;
+  display: flex;
+  border-radius: 15px;
+}
+
+.signup-container form {
+  input:focus {
+    color: none;
+  };
+  padding-bottom: 15px;
+}
+
+.prompt-text {
+  font-size: 0.65em;
+}
+
+.trade-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0;
+  height: 100%;
+}
+
+.trade-container-info {
+  padding: 3em;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.trade-container-info span {
+  color: rgba(142, 120, 228, 100);
+}
+
+.trade-container-text p {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 0.6em 0;
+}
+
+.trade-container-text > div {
+  margin-bottom: 0.5em;
+}
+
+.trade-container-spacing {
+  margin-top: 1em;
+  display: block;
+}
+
+.popup_btn_wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0.25em 0 0;
+}
+
+.coins_amount  {
+  font-weight: bold;
+}
+
+.coins_cost  {
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.8em;
+}
+
+.coins_amount input {
+  margin-left: 15px;
+  border: 1px solid #ddd;
+  width: 50px;
+  border-radius: 4px;
+}
+
+.trade-button {
+  padding: 1em 0;
+  width: 130px;
+  display: block;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  background-color: rgba(50, 40, 90, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.trade-close a {
+  margin-top: 1em;
+  display: block;
+  text-decoration: none;
+}
+
+.profile-close {
+  margin-top: 1em;
+  display: block;
+  text-decoration: none;
+}
+
+.trade-form {
+  margin-top: 2em;
+  border: 1px solid #eee;
+  padding: 1em;
+  border-radius: 4px;
+}
+
+.trade-form label {
+  font-weight: bold;
+}
+
+.trade-form select {
+  margin-left: 15px;
+  width: 100px;
+}
+
+.trade-form-receiver-text {
+  display: flex;
+  align-items: center;
+}
+
+.trade-container-text p {
+  font-weight: bold;
+}
+
+.trade-form-receiver-text p {
+  font-weight: bold;
+}
+
+.trade-container-text p span {
+  color: #b721b7;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-content: column;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 10px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.link {
+  font-weight: bold;
+  text-decoration: none;
+  padding-right: 5px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #636060;
+  text-align: center;
+  font-size: 0.75em;
+  height: auto;
+}
