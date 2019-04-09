@@ -27,9 +27,10 @@ Set up:
 
 To run:
 
-1. Start the rails server: rails s
-2. Start node: npm start
-3. Go to: localhost:3001
+1. Clone our backend: https://github.com/atkinsonholly/Cryptopeer
+2. Start the rails server: rails s
+3. Start node: npm start
+4. Go to: localhost:3001
 
 ## Authors
 
